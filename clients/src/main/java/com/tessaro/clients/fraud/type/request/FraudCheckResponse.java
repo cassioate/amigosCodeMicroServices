@@ -1,4 +1,4 @@
-package com.tessaro.fraud.type.request;
+package com.tessaro.clients.fraud.type.request;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }

@@ -1,7 +1,7 @@
 package com.tessaro.fraud.controller;
 
+import com.tessaro.clients.fraud.type.request.FraudCheckResponse;
 import com.tessaro.fraud.service.FraudCheckService;
-import com.tessaro.fraud.type.request.FraudCheckResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
