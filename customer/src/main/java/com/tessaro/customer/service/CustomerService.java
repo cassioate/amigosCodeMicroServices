@@ -1,15 +1,13 @@
 package com.tessaro.customer.service;
 
-import com.tessaro.customer.config.CustomerConfig;
+import com.tessaro.clients.fraud.FraudClient;
 import com.tessaro.customer.model.Customer;
 import com.tessaro.customer.types.request.CustomerRegistrationRequest;
 import com.tessaro.customer.repository.CustomerRepository;
-import com.tessaro.customer.types.request.FraudCheckResponse;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-public record CustomerService(CustomerRepository customerRepository, RestTemplate restTemplate) {
+public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
@@ -20,11 +18,7 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
         // todo: check if email no taken
         // todo: check if fraudster
         customerRepository.saveAndFlush(customer);
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+        fraudClient.isFraudster(customer.getId());
         // todo: send notification
 
     }
