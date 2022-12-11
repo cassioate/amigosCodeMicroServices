@@ -1,6 +1,6 @@
 package com.tessaro.clients.fraud;
 
-import com.tessaro.clients.fraud.type.request.FraudCheckResponse;
+import com.tessaro.clients.fraud.type.response.FraudCheckResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

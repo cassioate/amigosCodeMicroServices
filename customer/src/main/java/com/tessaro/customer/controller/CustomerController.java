@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public record CustomerController(CustomerService customerService) {
     @PostMapping
     public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRequest) {
-        log.info("new customer registration {}", customerRequest);
+        log.info("Customer - Controller - create a new customer registration {}", customerRequest);
         customerService.registerCustomer(customerRequest);
+        log.info("Customer - Controller - new customer registration was completed!");
     }
 }
