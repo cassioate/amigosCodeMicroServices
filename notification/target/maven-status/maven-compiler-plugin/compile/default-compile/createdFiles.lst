@@ -1,8 +1,0 @@
-com\tessaro\notification\NotificationApplication.class
-com\tessaro\notification\config\amqp\NotificationConfig.class
-com\tessaro\notification\consumer\NotificationConsumer.class
-com\tessaro\notification\model\Notification$NotificationBuilder.class
-com\tessaro\notification\model\Notification.class
-com\tessaro\notification\repository\NotificationRepository.class
-com\tessaro\notification\service\NotificationService.class
-com\tessaro\notification\controller\NotificationController.class

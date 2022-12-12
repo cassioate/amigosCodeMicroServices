@@ -1,7 +1,0 @@
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\consumer\NotificationConsumer.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\controller\NotificationController.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\model\Notification.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\config\amqp\NotificationConfig.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\service\NotificationService.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\NotificationApplication.java
-A:\Codes\Java\AmigosCode\amigosservice\notification\src\main\java\com\tessaro\notification\repository\NotificationRepository.java
