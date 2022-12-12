@@ -21,6 +21,7 @@ public class NotificationApplication {
         SpringApplication.run(NotificationApplication.class, args);
     }
 
+    // THIS IS A WAY TO PUBLISH A MESSAGE IN THE RABBITMQ THROUGH THE COMMANDLINE INSTEAD OF USING ANOTHER SERVICE
 //    @Bean
 //    CommandLineRunner commandLineRunner (
 //            RabbitMQMessageProducer producer,
