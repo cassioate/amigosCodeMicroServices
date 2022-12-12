@@ -1,0 +1,4 @@
+com\tessaro\clients\notification\NotificationClient.class
+com\tessaro\clients\fraud\FraudClient.class
+com\tessaro\clients\fraud\type\response\FraudCheckResponse.class
+com\tessaro\clients\notification\type\request\NotificationRequest.class
