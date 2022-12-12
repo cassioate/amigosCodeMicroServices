@@ -1,7 +1,0 @@
-com\tessaro\customer\types\request\CustomerRegistrationRequest.class
-com\tessaro\customer\controller\CustomerController.class
-com\tessaro\customer\repository\CustomerRepository.class
-com\tessaro\customer\service\CustomerService.class
-com\tessaro\customer\model\Customer.class
-com\tessaro\customer\CustomerApplication.class
-com\tessaro\customer\model\Customer$CustomerBuilder.class

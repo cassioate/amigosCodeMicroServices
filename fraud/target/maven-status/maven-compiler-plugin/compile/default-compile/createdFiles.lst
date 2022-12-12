@@ -1,6 +1,0 @@
-com\tessaro\fraud\FraudApplication.class
-com\tessaro\fraud\model\FraudCheckHistory.class
-com\tessaro\fraud\model\FraudCheckHistory$FraudCheckHistoryBuilder.class
-com\tessaro\fraud\repository\FraudCheckHistoryRepository.class
-com\tessaro\fraud\service\FraudCheckService.class
-com\tessaro\fraud\controller\FraudController.class
