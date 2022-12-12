@@ -1,7 +1,7 @@
 package com.tessaro.customer.service;
 
+import com.tessaro.amqp.producer.RabbitMQMessageProducer;
 import com.tessaro.clients.fraud.FraudClient;
-import com.tessaro.clients.notification.NotificationClient;
 import com.tessaro.clients.notification.type.request.NotificationRequest;
 import com.tessaro.customer.model.Customer;
 import com.tessaro.customer.types.request.CustomerRegistrationRequest;
@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient, NotificationClient notificationClient) {
+public record CustomerService(
+        CustomerRepository customerRepository,
+        FraudClient fraudClient,
+        RabbitMQMessageProducer producer) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         log.info("Customer - Service - make a new register with the follow data: {}.", request);
         Customer customer = Customer.builder()
@@ -23,9 +26,9 @@ public record CustomerService(CustomerRepository customerRepository, FraudClient
         // todo: check if email valid
         // todo: check if email no taken
         // todo: check if fraudster
+
         log.info("Customer - Service - make the validation of the customer id: {}", customer.getId());
         fraudClient.isFraudster(customer.getId());
-        // todo: make it async i.e add to queue
 
         NotificationRequest notificationData = new NotificationRequest(
                 customer.getId(),
@@ -33,6 +36,11 @@ public record CustomerService(CustomerRepository customerRepository, FraudClient
                 String.format("Hi %s, welcome...!", customer.getFirstName())
         );
         log.info("Customer - Service - send a notification to the queue with the follow data: {}", notificationData);
-        notificationClient.sendNotification(notificationData);
+        producer.publish(
+                notificationData,
+                "internal.exchange",
+                "internal.notification.routing-key"
+        );
+        log.info("Customer - Service - message was sent to the queue");
     }
 }

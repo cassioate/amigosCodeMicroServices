@@ -8,13 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
-//@SpringBootApplication(
-//        scanBasePackages = {
-//                "com.tessaro.notification",
-//                "com.tessaro.amqp"
-//        }
-//)
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "com.tessaro.notification",
+                "com.tessaro.amqp"
+        }
+)
 @EnableEurekaClient
 public class NotificationApplication {
     public static void main(String[] args) {
