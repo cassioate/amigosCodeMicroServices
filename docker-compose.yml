@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres
-    image: postgres
+    image: postgres:13-alpine3.17
     environment:
       POSTGRES_USER: amigoscode
       POSTGRES_PASSWORD: password
@@ -35,7 +35,7 @@ services:
     ports:
       - 9411:9411
     networks:
-      - postgres
+      - services
 
   rabbitmq:
     image: rabbitmq:3.9.11-management-alpine
@@ -44,10 +44,84 @@ services:
       - 5672:5672
       - 15672:15672
     networks:
+      - services
+
+  eureka-server:
+    image: cassioate/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - services
+    depends_on:
+      - zipkin
+
+  apigateway:
+    image: cassioate/apigateway:latest
+    container_name: apigateway
+    ports:
+      - 8000:8000
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - services
+    depends_on:
+      - zipkin
+      - eureka-server
+
+  customer:
+    image: cassioate/customer:latest
+    container_name: customer
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - services
       - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+  fraud:
+    image: cassioate/fraud:latest
+    container_name: fraud
+    ports:
+      - 8081:8081
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - services
+      - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+  notification:
+    image: cassioate/notification:latest
+    container_name: notification
+    ports:
+      - 8082:8082
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - services
+      - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
 
 networks:
   postgres:
+    driver: bridge
+  services:
     driver: bridge
 
 volumes:
